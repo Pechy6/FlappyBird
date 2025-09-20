@@ -26,5 +26,13 @@ namespace Environment
         {
             _rb.transform.Translate(new Vector3(-moveSpeed * Time.deltaTime, 0, 0));
         }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("DestroyGameObject"))
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
