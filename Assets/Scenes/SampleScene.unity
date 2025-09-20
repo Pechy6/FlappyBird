@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59388c9eaa7a44b1ba700888d28f5323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Environment.SpawnObstacles
-  pipePrefab: {fileID: 6248255132267618834, guid: fb0f1e0a42ac541a8a1e1cc6fd3bb3f5, type: 3}
+  pipePrefab: {fileID: 3694290467136140615, guid: fb0f1e0a42ac541a8a1e1cc6fd3bb3f5, type: 3}
   spawnIntervalStart: 0.7
   spawnIntervalEnd: 2.5
   heightOffset: 2
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59388c9eaa7a44b1ba700888d28f5323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Environment.SpawnObstacles
-  pipePrefab: {fileID: 8998061393799601687, guid: c2f32accbaf204731b9f4784c35e536e, type: 3}
+  pipePrefab: {fileID: 2298335903368915903, guid: c2f32accbaf204731b9f4784c35e536e, type: 3}
   spawnIntervalStart: 1
   spawnIntervalEnd: 3
   heightOffset: 1
@@ -567,7 +567,7 @@ Transform:
   m_GameObject: {fileID: 1766329398}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.3, y: 7.32, z: 0}
+  m_LocalPosition: {x: 11.3, y: 5.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
