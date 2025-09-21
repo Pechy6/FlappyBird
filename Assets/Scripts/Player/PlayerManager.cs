@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 namespace Player
@@ -21,7 +22,14 @@ namespace Player
 
         private bool _addingScore;
 
+        // For menu control
+        private bool _isCrashed;
+
         [SerializeField] private UiManager uiManager;
+        [SerializeField] private StopMenuManager stopMenuManager;
+
+        // escape menu
+        private InputAction _escapeInput;
 
         private void Awake()
         {
@@ -35,17 +43,39 @@ namespace Player
             if (_playerMovement == null)
                 Debug.LogError("BirdMovement not found.");
             _addingScore = true;
+            _escapeInput = new InputAction("Escape", binding: "<Keyboard>/escape");
+            _isCrashed = false;
         }
 
         private void Start()
         {
             if (uiManager == null)
             {
-                Debug.LogWarning("UiManager not found. in serialzfield");
+                Debug.LogWarning("UiManager not found. in serialize field");
                 uiManager = FindAnyObjectByType<UiManager>();
                 if (uiManager == null)
                     Debug.LogError("UiManager not found.");
             }
+
+            if (stopMenuManager == null)
+            {
+                Debug.LogWarning("StopMenuManager not found. in serialize field");
+                stopMenuManager = FindAnyObjectByType<StopMenuManager>();
+                if (stopMenuManager == null)
+                    Debug.LogError("StopMenuManager not found.");
+            }
+        }
+
+        private void OnEnable()
+        {
+            _escapeInput.Enable();
+            _escapeInput.performed += OnEscape;
+        }
+
+        private void OnDisable()
+        {
+            _escapeInput.performed -= OnEscape;
+            _escapeInput.Disable();
         }
 
         public void OnDeath()
@@ -56,8 +86,9 @@ namespace Player
             _spriteRenderer.flipY = true; // Flip opposite direction
             _addingScore = false; // Disable adding score
             StartCoroutine(DelayedUiOnDeath()); // Delayed Ui On Death
+            _isCrashed = true;
         }
-        
+
         private IEnumerator DelayedUiOnDeath()
         {
             yield return new WaitForSeconds(deathTimer);
@@ -71,6 +102,26 @@ namespace Player
             {
                 ScoreManager.Score++;
             }
+        }
+
+        private void OnEscape(InputAction.CallbackContext ctx)
+        {
+            if (_isCrashed) return;
+            // zajisti referenci po restartu scény (lazy lookup)
+            if (stopMenuManager == null || stopMenuManager.gameObject == null)
+            {
+#if UNITY_2023_1_OR_NEWER
+                stopMenuManager = FindAnyObjectByType<StopMenuManager>(FindObjectsInactive.Include);
+#else
+                stopMenuManager = FindObjectOfType<StopMenuManager>(true);
+#endif
+                if (stopMenuManager == null) return;
+            }
+
+            if (stopMenuManager.IsPaused)
+                stopMenuManager.Resume();
+            else
+                stopMenuManager.StopMenu();
         }
     }
 }
