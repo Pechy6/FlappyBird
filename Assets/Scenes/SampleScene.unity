@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 123868813}
   - component: {fileID: 123868812}
   m_Layer: 6
-  m_Name: Square
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,13 +175,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.36, y: 1.12}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.4, y: 1.18}
   m_EdgeRadius: 0
 --- !u!212 &123868813
 SpriteRenderer:
@@ -230,7 +230,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -3966044189379602213, guid: 87e71abf5338d4723af977768fb9966e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -250,8 +250,8 @@ Transform:
   m_GameObject: {fileID: 123868811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.46, z: 0}
-  m_LocalScale: {x: 17.987, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -5.28, z: 0}
+  m_LocalScale: {x: 5.3961, y: 3.025, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1017,7 +1017,7 @@ Transform:
   m_GameObject: {fileID: 763911022}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.3, y: -4.91, z: 0}
+  m_LocalPosition: {x: 11.3, y: -4.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1036,9 +1036,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Environment.SpawnObstacles
   pipePrefab: {fileID: 3694290467136140615, guid: fb0f1e0a42ac541a8a1e1cc6fd3bb3f5, type: 3}
-  spawnIntervalStart: 0.7
-  spawnIntervalEnd: 2.5
-  heightOffset: 2
+  spawnIntervalStart: 0.5
+  spawnIntervalEnd: 1.3
+  minHeightOffset: 1
+  heightOffset: 3
 --- !u!1 &1059643096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +1990,7 @@ MonoBehaviour:
   pipePrefab: {fileID: 2298335903368915903, guid: c2f32accbaf204731b9f4784c35e536e, type: 3}
   spawnIntervalStart: 1
   spawnIntervalEnd: 3
+  minHeightOffset: -1
   heightOffset: 1
 --- !u!4 &1766329400
 Transform:
@@ -2439,7 +2441,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.15
 --- !u!212 &1941334176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2487,7 +2489,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1193474465663719314, guid: 7e2f40c453eb24e61bd00e78f66da264, type: 3}
   m_Color: {r: 0.990566, g: 0.4532307, b: 0.890932, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2507,8 +2509,8 @@ Transform:
   m_GameObject: {fileID: 1941334173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.25, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.0231, y: 0.1601, z: 0}
+  m_LocalScale: {x: 2.54087, y: 2.54087, z: 2.54087}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
