@@ -1,4 +1,5 @@
 using UnityEngine;
+
 namespace Player
 {
     public class PlayerCollision : MonoBehaviour
@@ -6,6 +7,7 @@ namespace Player
         private int _indexOfObstacleMask;
         public bool IsCrashed { get; private set; }
         private PlayerManager _playerManager;
+
         private void Awake()
         {
             _indexOfObstacleMask = LayerMask.NameToLayer("Obstacle");
@@ -20,8 +22,10 @@ namespace Player
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.layer != _indexOfObstacleMask) return;
-            _playerManager.OnDeath();
-            Debug.Log("Game Over");
+            if (_playerManager != null)
+            {
+                _playerManager.OnDeath();
+            }
         }
 
         public void SetCrashed(bool value)

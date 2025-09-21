@@ -1,9 +1,11 @@
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
-    public class BirdMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         private Rigidbody2D _rb;
     
@@ -13,7 +15,7 @@ namespace Player
     
         // Manager
         private PlayerManager _playerManager;
-
+        [SerializeField] private UiManager uiManager;
         
         private void Awake()
         {
@@ -29,8 +31,14 @@ namespace Player
 
         private void Start()
         {
+            if (uiManager == null)
+            {
+                uiManager = FindAnyObjectByType<UiManager>();
+                if (uiManager == null)
+                    Debug.LogError("UiManager not found.");
+            }
             _jumpInput.performed += ctx =>
-            { 
+            { if(!uiManager.IsGameOver)
                 Jump();
             };
         }
@@ -55,8 +63,8 @@ namespace Player
         }
 
         public void SetJump()
-        {
-            OnDisable();
+        { 
+            _jumpInput.Disable();
         }
     }
 }

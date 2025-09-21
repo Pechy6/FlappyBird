@@ -19,7 +19,8 @@ namespace UI
         
         private void Update()
         {
-            scoreText.text = $"Score: {Score}";
+            int score = Score;
+            scoreText.text = $"Score: {score}";
         }
     }
 }
