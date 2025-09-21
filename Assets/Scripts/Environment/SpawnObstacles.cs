@@ -10,6 +10,7 @@ namespace Environment
         [SerializeField] GameObject pipePrefab;
         [SerializeField] float spawnIntervalStart = 1;
         [SerializeField] float spawnIntervalEnd = 3;
+        [SerializeField] float minHeightOffset = 1f;
         [SerializeField] float heightOffset = 1f;
 
         private float _spawnIn;
@@ -39,7 +40,7 @@ namespace Environment
 
         private void SpawnPipe()
         {
-            float randomY = UnityEngine.Random.Range(-heightOffset, heightOffset);
+            float randomY = UnityEngine.Random.Range(-minHeightOffset, heightOffset);
             Vector3 spawnPoints = transform.position + new Vector3(0, randomY, 0);
             Instantiate(pipePrefab, spawnPoints, Quaternion.identity);
         }

@@ -1,22 +1,25 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     public class ScoreManager : MonoBehaviour
     {
         public static int Score;
-        private TMP_Text _scoreText;
+        [SerializeField] private TMP_Text scoreText;
         
         private void Awake()
         {
-            _scoreText = GetComponent<TMP_Text>();
+            scoreText = GetComponentInChildren<TMP_Text>();
+            if (scoreText == null)
+                Debug.LogError("TMP_Text not found.");
             Score = 0;
         }
         
         private void Update()
         {
-            _scoreText.text = $"Score: {Score}";
+            scoreText.text = $"Score: {Score}";
         }
     }
 }

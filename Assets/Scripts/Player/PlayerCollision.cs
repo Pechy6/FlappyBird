@@ -1,5 +1,4 @@
 using UnityEngine;
-
 namespace Player
 {
     public class PlayerCollision : MonoBehaviour
@@ -16,6 +15,8 @@ namespace Player
         {
             if (other.gameObject.layer != _indexOfObstacleMask) return;
             IsCrashed = true;
+            PlayerManager.SpriteRenderer.color = Color.red;
+            PlayerManager.SpriteRenderer.flipY = true;
             Debug.Log("Game Over");
         }
     }

@@ -1,23 +1,25 @@
 using System;
+using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
     public class PlayerManager : MonoBehaviour
     {
-        private int _score;
-
+        public static SpriteRenderer SpriteRenderer;
+        
         private void Awake()
         {
-            _score = 0;
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+            if (SpriteRenderer == null)
+                Debug.LogError("SpriteRenderer not found.");
         }
-
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("AddScore"))
             {
-                _score++;
-                Debug.Log("Add to score" + _score);
+                ScoreManager.Score++;
             }
         }
     }
