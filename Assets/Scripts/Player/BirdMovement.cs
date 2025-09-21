@@ -11,14 +11,15 @@ namespace Player
         private InputAction _jumpInput;
         [SerializeField] private float jumpForce;
     
-        // Crash
-        private PlayerCollision _playerCollision;
-    
+        // Manager
+        private PlayerManager _playerManager;
+
+        
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _playerCollision = GetComponent<PlayerCollision>();
-            if (_playerCollision == null)
+            _playerManager = GetComponent<PlayerManager>();
+            if (_playerManager == null)
             {
                 Debug.LogWarning("PlayerCollision not found.");
             }
@@ -29,9 +30,8 @@ namespace Player
         private void Start()
         {
             _jumpInput.performed += ctx =>
-            {
-                if (!_playerCollision.IsCrashed)
-                    Jump();
+            { 
+                Jump();
             };
         }
 
@@ -52,6 +52,11 @@ namespace Player
             jumpInput.y = 0;
             _rb.linearVelocity = jumpInput;
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        public void SetJump()
+        {
+            OnDisable();
         }
     }
 }
