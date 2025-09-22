@@ -30,6 +30,13 @@ namespace Player
 
         // escape menu
         private InputAction _escapeInput;
+        
+        //Audio
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip hitCLip;
+        [SerializeField] private AudioClip deathClip;
+        [SerializeField] private AudioClip scoreClip;
+        private bool _isPlayed;
 
         private void Awake()
         {
@@ -45,6 +52,7 @@ namespace Player
             _addingScore = true;
             _escapeInput = new InputAction("Escape", binding: "<Keyboard>/escape");
             _isCrashed = false;
+            _isPlayed = false;
         }
 
         private void Start()
@@ -87,6 +95,17 @@ namespace Player
             _addingScore = false; // Disable adding score
             StartCoroutine(DelayedUiOnDeath()); // Delayed Ui On Death
             _isCrashed = true;
+            if (audioSource != null && hitCLip != null && !_isPlayed)
+            {
+                audioSource.PlayOneShot(hitCLip);
+                Invoke(nameof(OnDeathSound), 0.2f);
+                _isPlayed = true;
+            }
+        }
+
+        private void OnDeathSound()
+        {
+            audioSource.PlayOneShot(deathClip);
         }
 
         private IEnumerator DelayedUiOnDeath()
@@ -101,6 +120,8 @@ namespace Player
             if (other.gameObject.CompareTag("AddScore") && _addingScore)
             {
                 ScoreManager.Score++;
+                if (audioSource != null && scoreClip != null)
+                    audioSource.PlayOneShot(scoreClip);
             }
         }
 
